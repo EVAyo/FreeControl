@@ -1,5 +1,16 @@
 # Free Control 更新记录
 
+## v1.7.3
+- 基于scrcpy v3.0(x32)
+- 增加 `CustomScrcpyPath` 参数用于自定义Scrcpy目录
+
+## v1.7.2
+- 修复了一些bug
+
+## v1.7.1
+- 增加 `Workflows`
+- 修复 `PowerOffOnClose` 参数未生效的问题
+
 ## v1.7.0
 - 默认启用 `UHID keyboard` 优化中文输入体验
 - 增加 `PowerOffOnClose` 参数控制退出时锁屏，默认启用

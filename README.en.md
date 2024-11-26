@@ -1,6 +1,6 @@
 # FreeControl
 
-[![](https://img.shields.io/github/license/pdone/FreeControl?style=for-the-badge)](https://github.com/pdone/FreeControl/blob/master/LICENSE)
+[![](https://img.shields.io/github/actions/workflow/status/pdone/FreeControl/build-and-release.yml?style=for-the-badge)](https://github.com/pdone/FreeControl/actions/workflows/build-and-release.yml)
 [![](https://img.shields.io/github/release/pdone/FreeControl?style=for-the-badge)](https://github.com/pdone/FreeControl/releases/latest)
 [![](https://img.shields.io/github/downloads/pdone/FreeControl/total?style=for-the-badge)](https://github.com/pdone/FreeControl/releases)
 [![](https://img.shields.io/github/stars/pdone/FreeControl?style=for-the-badge)](https://github.com/pdone/FreeControl)
@@ -18,9 +18,9 @@ Based on the open source project [**scrcpy**](https://github.com/Genymobile/scrc
 
 ## Interface
 
-![](https://raw.githubusercontent.com/pdone/static/master/img/article/free-control/1.6.8_1_en.png)
+![](https://raw.githubusercontent.com/pdone/static/master/img/article/free-control/latest_home_en.png)
 
-![](https://raw.githubusercontent.com/pdone/static/master/img/article/free-control/1.6.8_2_en.png)
+![](https://raw.githubusercontent.com/pdone/static/master/img/article/free-control/latest_setting_en.png)
 
 ![](https://raw.githubusercontent.com/pdone/static/master/img/article/free-control/v1.4.0_5.gif)
 
@@ -42,6 +42,14 @@ https://cdn.awaw.cc/gh/pdone/FreeControl/releases/latest/download/FreeControl.ex
 [![](https://img.shields.io/badge/updete-record-fedcba?style=for-the-badge)](https://github.com/pdone/FreeControl/blob/master/FreeControl/Update.en.md)
 
 ## FAQ
+
+### Lock Screen After Closing Window
+
+`v1.7.1` and later versions, the `PowerOffOnClose` parameter is added to control whether the mobile phone will be locked after the control window is closed. It is not enabled by default. You can change the value of the `PowerOffOnClose` parameter to `true` in the configuration file `%AppData%\FreeControl\config.json` to enable it.
+
+### Compilation Issues
+
+`Workflows` have been added to this repository for continuous integration. You can view the latest code build status through `GitHub Action`. If `Workflows` is successfully built but cannot be compiled after being pulled locally, you can try to manually add project dependencies or retry by referring to the build process configured in `Workflows`.
 
 ### Input Method Issues
 
@@ -102,39 +110,7 @@ USB connection normal use adb by the need to ensure that:
 
    Description Connection successful.
 
-#### Wireless connection (Android11+)
-
-[Doc in Android developers](https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+)
-
-Android 11 and higher support deploying and debugging your app wirelessly from your workstation using Android Debug Bridge (adb). For example, you can deploy your debuggable app to multiple remote devices without physically connecting your device via USB. This eliminates the need to deal with common USB connection issues, such as driver installation.
-
-To use wireless debugging, you need to pair your device to your workstation using a pairing code. Your workstation and device must be connected to the same wireless network. To connect to your device, follow these steps:
-
-1. Update to the latest version of the [SDK Platform-Tools](https://developer.android.com/studio/releases/platform-tools).
-
-2. Connect Android device to run adb computer connected to the same local area network, such as connected to the same WiFi.
-
-3. Enable the **Wireless debugging** option.
-
-4. On the dialog that asks **Allow wireless debugging on this network?**, click **Allow**.
-
-5. Select **Pair device with pairing code**. Take note of the pairing code, IP address, and port number displayed on the device.
-
-6. On your workstation, open a terminal and navigate to `android_sdk/platform-tools`.
-
-7. Run `adb pair ipaddr:port`. Use the IP address and port number from step 5.
-
-8. When prompted, enter the pairing code that you received in step 5. A message indicates that your device has been successfully paired.
-
-   ```sh
-   none
-   Enter pairing code: xxxxxx
-   Successfully paired to ...
-   ```
-
-9. (For Linux or Microsoft Windows only) Run `adb connect ipaddr:port`. Use the IP address and port under **Wireless debugging**.
-
-#### Wireless connection (need to use the USB cable)
+#### Wireless connection (first time need to use the USB cable)
 
 In addition to the USB connection to the computer to use adb, can also be a wireless connection - although the connection process is also step using USB needs, but after a successful connection to your device can get rid of the limit of the USB cable within a certain range it !
 
@@ -184,9 +160,46 @@ If you can not connect, verify that Android devices and the computer is connecte
 
 If that does not work, by `adb kill-server` restart the adb and then try it all over again.
 
+<details>
+<summary>Hidden</summary>
+
+#### Wireless connection (Android11+)
+
+[Doc in Android developers](https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+)
+
+Android 11 and higher support deploying and debugging your app wirelessly from your workstation using Android Debug Bridge (adb). For example, you can deploy your debuggable app to multiple remote devices without physically connecting your device via USB. This eliminates the need to deal with common USB connection issues, such as driver installation.
+
+To use wireless debugging, you need to pair your device to your workstation using a pairing code. Your workstation and device must be connected to the same wireless network. To connect to your device, follow these steps:
+
+1. Update to the latest version of the [SDK Platform-Tools](https://developer.android.com/studio/releases/platform-tools).
+
+2. Connect Android device to run adb computer connected to the same local area network, such as connected to the same WiFi.
+
+3. Enable the **Wireless debugging** option.
+
+4. On the dialog that asks **Allow wireless debugging on this network?**, click **Allow**.
+
+5. Select **Pair device with pairing code**. Take note of the pairing code, IP address, and port number displayed on the device.
+
+6. On your workstation, open a terminal and navigate to `android_sdk/platform-tools`.
+
+7. Run `adb pair ipaddr:port`. Use the IP address and port number from step 5.
+
+8. When prompted, enter the pairing code that you received in step 5. A message indicates that your device has been successfully paired.
+
+   ```sh
+   none
+   Enter pairing code: xxxxxx
+   Successfully paired to ...
+   ```
+
+9. (For Linux or Microsoft Windows only) Run `adb connect ipaddr:port`. Use the IP address and port under **Wireless debugging**.
+
 #### Wireless connection (without using the USB cable)
 
 **Need root privileges**, not detailed here, see more [click here](https://github.com/mzlogin/awesome-adb/blob/master/README.en.md#wireless-connection-without-using-the-usb-cable)。
+
+</details>
 
 ### Keep Wake-up Function
 

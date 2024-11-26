@@ -1,5 +1,16 @@
 # Free Control Update Record
 
+## v1.7.3
+- Based on scrcpy v3.0(x32)
+- Add 'CustomScrcpyPath' parameter to customize Scrcpy directory
+
+## v1.7.2
+- Fix bug
+
+## v1.7.1
+- Add `Workflows`
+- Fix `PowerOffOnClose` parameter not taking effect
+
 ## v1.7.0
 - `UHID keyboard` is enabled by default to optimize the Chinese input experience
 - Add `PowerOffOnClose` parameter to control lock screen when exiting, enabled by default
